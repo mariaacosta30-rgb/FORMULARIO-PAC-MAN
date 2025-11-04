@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição SENAI - Tema Pac-Man</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+        /* 2. Estilos CSS (O Tema Pac-Man) */
+        
+        :root {
+            --pacman-yellow: #FFFF00; /* Amarelo Pac-Man */
+            --pacman-wall: #0000FF;   /* Azul (parede do labirinto) */
+            --pacman-ghost-red: #FF0000; /* Vermelho (Blinky) */
+            --pacman-ghost-pink: #FFB8FF; /* Rosa (Pinky) */
+            --pacman-bg: #000000;      /* Fundo preto do arcade */
+            --text-input-bg: #222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--pacman-bg);
+            color: var(--pacman-yellow);
+            font-family: 'Press Start 2P', cursive; /* Aplicando a fonte pixelada */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            border: 4px solid var(--pacman-wall); /* Borda azul "labirinto" */
+            padding: 2.5rem 2rem;
+            background-color: #111; /* Um fundo levemente mais claro que o preto total */
+            box-shadow: 0 0 15px var(--pacman-wall);
+        }
+
+        /* Título */
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            line-height: 1.4;
+        }
+
+        /* --- Estilos do Formulário --- */
+        
+        #form-inscricao label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        #form-inscricao input[type="text"],
+        #form-inscricao input[type="email"],
+        #form-inscricao input[type="tel"],
+        #form-inscricao select,
+        #form-inscricao textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1.5rem;
+            background-color: var(--text-input-bg);
+            border: 2px solid var(--pacman-wall);
+            color: #FFFFFF; /* Texto branco dentro do input */
+            font-family: Arial, sans-serif; /* Fonte normal para inputs para legibilidade */
+            font-size: 1rem;
+        }
+
+        /* Faz o <select> parecer com o resto */
+        #form-inscricao select {
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFF00%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 0.8em;
+        }
+
+        /* Botões */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            font-family: 'Press Start 2P', cursive;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .btn-submit {
+            background-color: var(--pacman-ghost-red); /* Botão vermelho */
+            color: #FFFFFF;
+        }
+        .btn-submit:hover {
+            background-color: var(--pacman-yellow);
+            color: var(--pacman-bg);
+        }
+
+        .btn-back {
+            background-color: var(--pacman-wall); /* Botão azul */
+            color: #FFFFFF;
+        }
+        .btn-back:hover {
+            background-color: var(--pacman-yellow);
+            color: var(--pacman-bg);
+        }
+
+        /* Link "Já sou aluno" */
+        .link-aluno {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--pacman-ghost-pink); /* Cor rosa */
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        .link-aluno:hover {
+            text-decoration: underline;
+        }
+
+
+        /* --- Página de Confirmação --- */
+        #form-confirmacao {
+            display: none; /* Começa escondido */
+            text-align: center;
+        }
+
+        #form-confirmacao p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #FFFFFF; /* Texto branco para melhor leitura */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div id="form-inscricao">
+            <h1>Inscrição SENAI</h1>
+            
+            <form id="senai-form">
+                <label for="nome">Nome completo:</label>
+                <input type="text" id="nome" name="nome" value="JOAO">
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" value="naoresponde@email.com">
+
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" value="(81) 99678-3787">
+
+                <label for="curso">Curso desejado:</label>
+                <select id="curso" name="curso">
+                    <option value="informatica">Técnico em Informática</option>
+                    <option value="eletrotecnica">Técnico em Eletrotécnica</option>
+                    <option value="mecanica">Técnico em Mecânica</option>
+                    <option value="seguranca">Técnico em Segurança do Trabalho</option>
+                </select>
+
+                <label for="obs">Observações:</label>
+                <textarea id="obs" name="obs" rows="4">TESTE</textarea>
+
+                <button type="button" id="btn-enviar" class="btn btn-submit">Enviar Inscrição</button>
+                
+                <a href="#" class="link-aluno">Já Sou aluno!</a>
+            </form>
+        </div>
+
+        <div id="form-confirmacao">
+            <h2>Waka-Waka! Inscrição Recebida!</h2>
+            <p>Obrigado pela sua inscrição! Recebemos seus dados e entraremos em contato em breve.</p>
+            
+            <button type="button" id="btn-voltar" class="btn btn-back">Voltar para página principal</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Seleciona os elementos que vamos manipular
+        const formInscricao = document.getElementById('form-inscricao');
+        const formConfirmacao = document.getElementById('form-confirmacao');
+        
+        const btnEnviar = document.getElementById('btn-enviar');
+        const btnVoltar = document.getElementById('btn-voltar');
+        
+        const formulario = document.getElementById('senai-form');
+
+        // Adiciona um "ouvinte" de clique no botão ENVIAR
+        btnEnviar.addEventListener('click', function() {
+            // Esconde o formulário de inscrição
+            formInscricao.style.display = 'none';
+            
+            // Mostra a mensagem de confirmação
+            formConfirmacao.style.display = 'block';
+        });
+
+        // Adiciona um "ouvinte" de clique no botão VOLTAR
+        btnVoltar.addEventListener('click', function() {
+            // Esconde a mensagem de confirmação
+            formConfirmacao.style.display = 'none';
+            
+            // Mostra o formulário de inscrição novamente
+            formInscricao.style.display = 'block';
+
+            // Opcional: Limpa o formulário para uma nova inscrição
+            // formulario.reset(); 
+            // Nota: Deixei os dados preenchidos como na sua imagem, então não vou resetar por padrão.
+        });
+    </script>
+
+</body>
+</html>
