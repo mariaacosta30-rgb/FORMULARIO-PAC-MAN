@@ -13,11 +13,11 @@
         /* 2. Estilos CSS (O Tema Pac-Man) */
         
         :root {
-            --pacman-yellow: #FFFF00; /* Amarelo Pac-Man */
-            --pacman-wall: #0000FF;   /* Azul (parede do labirinto) */
-            --pacman-ghost-red: #FF0000; /* Vermelho (Blinky) */
-            --pacman-ghost-pink: #FFB8FF; /* Rosa (Pinky) */
-            --pacman-bg: #000000;      /* Fundo preto do arcade */
+            --pacman-yellow: #FFFF00; 
+            --pacman-wall: #0000FF;   /
+            --pacman-ghost-red: #FF0000; 
+            --pacman-ghost-pink: #FFB8FF; 
+            --pacman-bg: #000000;      
             --text-input-bg: #222;
         }
 
@@ -30,7 +30,7 @@
         body {
             background-color: var(--pacman-bg);
             color: var(--pacman-yellow);
-            font-family: 'Press Start 2P', cursive; /* Aplicando a fonte pixelada */
+            font-family: 'Press Start 2P', cursive; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -41,9 +41,9 @@
         .container {
             width: 100%;
             max-width: 600px;
-            border: 4px solid var(--pacman-wall); /* Borda azul "labirinto" */
+            border: 4px solid var(--pacman-wall); 
             padding: 2.5rem 2rem;
-            background-color: #111; /* Um fundo levemente mais claro que o preto total */
+            background-color: #111; 
             box-shadow: 0 0 15px var(--pacman-wall);
         }
 
@@ -54,8 +54,6 @@
             font-size: 1.5rem;
             line-height: 1.4;
         }
-
-        /* --- Estilos do Formulário --- */
         
         #form-inscricao label {
             display: block;
@@ -73,12 +71,11 @@
             margin-bottom: 1.5rem;
             background-color: var(--text-input-bg);
             border: 2px solid var(--pacman-wall);
-            color: #FFFFFF; /* Texto branco dentro do input */
-            font-family: Arial, sans-serif; /* Fonte normal para inputs para legibilidade */
+            color: #FFFFFF; 
+            font-family: Arial, sans-serif; 
             font-size: 1rem;
         }
 
-        /* Faz o <select> parecer com o resto */
         #form-inscricao select {
             appearance: none;
             background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFF00%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
@@ -87,7 +84,6 @@
             background-size: 0.8em;
         }
 
-        /* Botões */
         .btn {
             display: block;
             width: 100%;
@@ -101,7 +97,7 @@
         }
 
         .btn-submit {
-            background-color: var(--pacman-ghost-red); /* Botão vermelho */
+            background-color: var(--pacman-ghost-red);
             color: #FFFFFF;
         }
         .btn-submit:hover {
@@ -110,7 +106,7 @@
         }
 
         .btn-back {
-            background-color: var(--pacman-wall); /* Botão azul */
+            background-color: var(--pacman-wall); 
             color: #FFFFFF;
         }
         .btn-back:hover {
@@ -118,12 +114,11 @@
             color: var(--pacman-bg);
         }
 
-        /* Link "Já sou aluno" */
         .link-aluno {
             display: block;
             text-align: center;
             margin-top: 1.5rem;
-            color: var(--pacman-ghost-pink); /* Cor rosa */
+            color: var(--pacman-ghost-pink); 
             font-size: 0.8rem;
             text-decoration: none;
         }
@@ -132,9 +127,8 @@
         }
 
 
-        /* --- Página de Confirmação --- */
         #form-confirmacao {
-            display: none; /* Começa escondido */
+            display: none; 
             text-align: center;
         }
 
@@ -142,7 +136,7 @@
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 2rem;
-            color: #FFFFFF; /* Texto branco para melhor leitura */
+            color: #FFFFFF; 
         }
 
     </style>
@@ -192,7 +186,6 @@
     </div>
 
     <script>
-        // Seleciona os elementos que vamos manipular
         const formInscricao = document.getElementById('form-inscricao');
         const formConfirmacao = document.getElementById('form-confirmacao');
         
@@ -201,26 +194,14 @@
         
         const formulario = document.getElementById('senai-form');
 
-        // Adiciona um "ouvinte" de clique no botão ENVIAR
         btnEnviar.addEventListener('click', function() {
-            // Esconde o formulário de inscrição
             formInscricao.style.display = 'none';
-            
-            // Mostra a mensagem de confirmação
             formConfirmacao.style.display = 'block';
         });
 
-        // Adiciona um "ouvinte" de clique no botão VOLTAR
         btnVoltar.addEventListener('click', function() {
-            // Esconde a mensagem de confirmação
             formConfirmacao.style.display = 'none';
-            
-            // Mostra o formulário de inscrição novamente
             formInscricao.style.display = 'block';
-
-            // Opcional: Limpa o formulário para uma nova inscrição
-            // formulario.reset(); 
-            // Nota: Deixei os dados preenchidos como na sua imagem, então não vou resetar por padrão.
         });
     </script>
 
